@@ -4,7 +4,7 @@ import Main from "./pages/Main";
 import Detail from "./pages/Detail";
 import List from "./pages/List";
 import Layout from "./layouts/Layout";
-import "./global module.scss";
+import "../global.module.scss";
 
 function App() {
   return (
