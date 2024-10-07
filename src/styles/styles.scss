@@ -1,0 +1,121 @@
+$header-background: #f8f8f8;
+$header-padding: 20px;
+$header-border: 1px solid #ccc;
+$category-width: 200px;
+$category-bg: #ffffff;
+$category-hover: #e0e0e0;
+$active-color: #007bff;
+$main-padding: 20px;
+$category-item-height: 40px; // 각 카테고리 항목의 높이 (px)
+$category-visible-items: 10; // 한 번에 보이는 카테고리 항목 수
+$category-gap: 10px; // 항목 간격 설정
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background: $header-background;
+  border-bottom: $header-border;
+  padding: $header-padding;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column; // 세로 방향 배치
+  align-items: flex-start; // 왼쪽 정렬
+}
+
+.header-title {
+  margin: 0 0 10px 0; // 아래쪽 마진 추가
+  font-size: 24px;
+}
+
+.category-list {
+  width: $category-width;
+  background: $category-bg;
+  padding: 10px 0; // 상하 패딩만 설정
+  border-left: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.category-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: calc($category-item-height * $category-visible-items);
+  overflow-y: auto; // 세로 스크롤 활성화
+}
+
+.category-list li {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px; // 좌우 패딩 추가
+  height: $category-item-height;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s, color 0.3s;
+
+  &:hover {
+    background: $category-hover;
+  }
+
+  &.active {
+    background: lighten($category-hover, 10%);
+    font-weight: bold;
+    color: $active-color;
+  }
+
+  .category-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    color: inherit;
+  }
+
+  .category-name {
+    flex: 1;
+  }
+}
+
+.main-content {
+  padding: $main-padding;
+  flex: 1; // 메인 콘텐츠가 남은 공간을 채우도록 설정
+}
+
+.product-list {
+  padding: 10px; // 제품 목록에 약간의 패딩 추가
+}
+
+.product-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-list li {
+  padding: 15px 20px; // 위/아래 패딩을 증가시켜 간격 추가
+  margin-bottom: 10px; // 각 제품 사이에 간격 추가
+  border: 1px solid #ddd; // 각 제품에 테두리 추가
+  border-radius: 5px; // 테두리에 약간의 곡선 추가
+  transition: background 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    background: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:last-child {
+    margin-bottom: 0; // 마지막 제품은 아래 마진 제거
+  }
+
+  .product-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .product-price {
+    font-size: 16px;
+    color: #555;
+  }
+}
