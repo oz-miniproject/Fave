@@ -27,6 +27,7 @@ export default function Detail() {
       });
       console.log(response.data);
       const data = response.data.items;
+
       if (!data || data.length === 0) {
         console.log("No items found for the given query.");
       } else {
