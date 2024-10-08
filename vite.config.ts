@@ -8,7 +8,7 @@ export default defineConfig({
       '/api': {
         target: 'https://openapi.naver.com', // 네이버 API 주소
         changeOrigin: true,
-        secure: false, // HTTPS를 사용하는 경우 필요할 수 있습니다.
+        secure: true, // HTTPS를 사용하는 경우 true로 설정
         rewrite: (path) => path.replace(/^\/api/, ''), // /api를 제거
       },
     },

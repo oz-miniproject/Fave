@@ -1,25 +1,22 @@
-import axios from "axios";
+import axios from 'axios';
 
-const CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
-const CLIENT_SECRET = import.meta.env.VITE_NAVER_CLIENT_SECRET;
-
-export const fetchProducts = async (query: string) => {
+// API 호출 함수
+export const fetchProducts = async (category: string) => {
   try {
     const response = await axios.get('/v1/search/shop.json', {
-      headers: {
-        "X-Naver-Client-Id": CLIENT_ID,
-        "X-Naver-Client-Secret": CLIENT_SECRET,
-      },
       params: {
-        query: query, // 검색할 쿼리
-        display: 10, // 보여줄 결과 수 (최대 100)
-        start: 1, // 시작 위치
+        query: category, // 선택된 카테고리를 쿼리로 사용
+        display: 10,
+        start: 1,
+      },
+      headers: {
+        'X-Naver-Client-Id': import.meta.env.VITE_CLIENT_ID, // 클라이언트 ID
+        'X-Naver-Client-Secret': import.meta.env.VITE_CLIENT_SECRET, // 클라이언트 시크릿
       },
     });
-    console.log("Fetched products:", response.data); // API 응답 로그 추가
-    return response.data; 
+    return response.data; // 데이터를 반환
   } catch (error) {
-    console.error("Error fetching products:", error);
-    throw error; // 에러를 호출한 곳으로 전달
+    console.error('Error fetching products:', error);
+    throw error; // 오류를 다시 던져서 호출자에게 알림
   }
 };
