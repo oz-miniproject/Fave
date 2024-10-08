@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const CLIENT_ID = "nowksGWCmxa5rgXXbp5_"; // 클라이언트 ID
-const CLIENT_SECRET = "3piTyrE0nQ"; // 클라이언트 Secret
-const API_URL = "https://openapi.naver.com/v1/search/shop.json"; // 네이버 쇼핑 검색 API URL
+const CLIENT_ID = import.meta.env.VITE_NAVER_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.VITE_NAVER_CLIENT_SECRET;
 
 export const fetchProducts = async (query: string) => {
   try {
-    const response = await axios.get(API_URL, {
+    const response = await axios.get('/v1/search/shop.json', {
       headers: {
         "X-Naver-Client-Id": CLIENT_ID,
         "X-Naver-Client-Secret": CLIENT_SECRET,
