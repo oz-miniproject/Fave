@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { fetchProducts } from "./data/api";
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
+import Main from "./pages/Main";
+import Detail from "./pages/Detail";
+import List from "./pages/List";
+import Layout from "./layouts/Layout";
+import Payment from "./pages/Payment";
+import Cart from "./pages/Cart";
+import "./App.css";
+import "../global.module.scss";
 
 interface Product {
   id: number;
@@ -44,7 +53,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
+    <BrowserRouter>
       <Header
         categories={categories}
         onSelectCategory={handleSelectCategory}
@@ -59,8 +68,19 @@ const App: React.FC = () => {
           </div>
         )}
       </div>
-    </div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Main />} />
+          <Route path="/list" element={<List />} />
+          <Route path="/detail" element={<Detail />} />
+          {/* <Route path="/detail/:id" element={<Detail />} /> */}
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
 export default App;
+
